@@ -1,0 +1,31 @@
+{
+    "name": "daw/sistemasnumeracion",
+    "description": "Sistemas de numeración: pe. romana",
+    "type": "library",
+    "require-dev": {
+        "phpunit/phpunit": "^9.5"
+    },
+    "license": "GPL",
+    "authors": [
+        {
+            "name": "jca",
+            "email": "josecarlos.alvarezgonzalez@080formacion.alzago.es"
+        }
+    ],
+    "minimum-stability": "stable",
+    "require": {},
+    "autoload": {
+        "psr-4": {
+            "Daw\\" : "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Daw\\Tests\\" : "tests/"
+        }
+    },
+    "config": {
+        "bin-dir": "bin/"
+    }
+
+}
