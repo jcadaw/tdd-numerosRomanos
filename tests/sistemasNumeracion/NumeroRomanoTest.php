@@ -23,6 +23,20 @@ class NumeroRomanoTest extends TestCase{
     }
 
 
+    public function providerSimbolosBaseTriple(){
+        return [
+            '3 es III' => [3, 'III'],
+            '30 es XXX' => [30, 'XXX'],
+            '300 es CCC' => [300, 'CCC'],
+            '3000 es MMM' => [3000, 'MMM'],
+        ];
+    }
+/*
+    '15 es XV' => [15, 'XV'],
+    '150 es CL' => [150, 'CL'],
+    '1500 es MD' => [1500, 'MD'],
+*/
+
     /**
      * @covers ::getRomanValue
      * @dataProvider providerSimbolosBase
@@ -33,4 +47,17 @@ class NumeroRomanoTest extends TestCase{
 
         $this->assertSame($ret, $espero);
     }
+
+
+
+    /**
+     * @covers ::getRomanValue
+     * @dataProvider providerSimbolosBaseTriple
+     */
+    public function testDeberiaPasarConSimboloTripleEnRomano($num, $espero){
+        $sut = new NumeroRomano($num);
+        $ret = $sut->getRomanValue();
+
+        $this->assertSame($ret, $espero);
+    }    
 }

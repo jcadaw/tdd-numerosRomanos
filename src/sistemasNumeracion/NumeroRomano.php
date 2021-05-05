@@ -33,6 +33,18 @@ class NumeroRomano{
      * 
      */
     public function getRomanValue(): string{
-        return self::MAP[$this->num];
+        $ret = '';
+        $aux = $this->num;
+        $map = self::MAP;
+        end($map);
+        while($aux > 0){
+            while(($cociente = intval($aux/key($map))) < 1){
+                prev($map);
+            }
+            $aux -= key($map);
+            $ret .= current($map);
+        }
+
+        return $ret;
     }
 }
