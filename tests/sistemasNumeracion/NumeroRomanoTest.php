@@ -31,11 +31,24 @@ class NumeroRomanoTest extends TestCase{
             '3000 es MMM' => [3000, 'MMM'],
         ];
     }
-/*
-    '15 es XV' => [15, 'XV'],
-    '150 es CL' => [150, 'CL'],
-    '1500 es MD' => [1500, 'MD'],
-*/
+
+    public function providerSimbolosBaseTripleTipo5(){
+        return [
+            '15 es XV' => [15, 'XV'],
+            '150 es CL' => [150, 'CL'],
+            '1500 es MD' => [1500, 'MD'],
+        ];
+    }    
+
+
+    public function providerNumeros4(){
+        return [
+            '4 es IV' => [4, 'IV'],
+            '40 es XL' => [40, 'XL'],
+            '400 es CD' => [400, 'CD'],
+        ];
+    }    
+    
 
     /**
      * @covers ::getRomanValue
@@ -60,4 +73,28 @@ class NumeroRomanoTest extends TestCase{
 
         $this->assertSame($ret, $espero);
     }    
+
+    /**
+     * @covers ::getRomanValue
+     * @dataProvider providerSimbolosBaseTripleTipo5
+     */
+    public function testDeberiaPasarConSimboloTripleTipo5EnRomano($num, $espero){
+        $sut = new NumeroRomano($num);
+        $ret = $sut->getRomanValue();
+
+        $this->assertSame($ret, $espero);
+    }     
+
+    /**
+     * Con números cuatro nos referimos a 4, 40, 400
+     * 
+     * @covers ::getRomanValue
+     * @dataProvider providerNumeros4
+     */
+    public function testDeberiaPasarNumeros4($num, $espero){
+        $sut = new NumeroRomano($num);
+        $ret = $sut->getRomanValue();
+
+        $this->assertSame($ret, $espero);
+    }       
 }
