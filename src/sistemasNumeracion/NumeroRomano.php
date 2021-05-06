@@ -41,14 +41,14 @@ class NumeroRomano{
             while(($cociente = intval($aux/key($map))) < 1){
                 prev($map);
             }
+
+            $aux -= $cociente*key($map);
             if ($cociente == 4){
-                $aux -= 4*key($map);
                 $ret .= current($map);
                 $ret .= next($map);
             }
             else{
-                $aux -= key($map);
-                $ret .= current($map);
+                $ret .= str_repeat(current($map), $cociente);
             }
         }
 
