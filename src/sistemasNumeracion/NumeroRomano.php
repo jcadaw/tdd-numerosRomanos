@@ -27,6 +27,25 @@ class NumeroRomano{
     }
 
     /**
+     * Comprueba si el número romano $c comienza con un 5 en decimal
+     * 
+     * @param string $c Caracter (único) en romano a comprobar
+     * 
+     * @return bool true en caso que la conversión a decimal comience con un 5
+     *              false en otro caso
+     */
+    private function isNumero5(string $c): bool{
+        $dec = array_search($c, self::MAP);
+        if ($dec !== false){
+            $dec_str = strval($dec);
+            if ($dec_str[0] === '5'){
+                return true;
+            }
+        }
+        return false;
+    }
+
+    /**
      * Devolverá la representación en número romano de la propiedad $num
      * 
      * @return string La representación en número romano de $num
@@ -44,8 +63,16 @@ class NumeroRomano{
 
             $aux -= $cociente*key($map);
             if ($cociente == 4){
-                $ret .= current($map);
-                $ret .= next($map);
+                //tipo numero 9, 90, 900
+                if (!empty($ret) && $this->isNumero5($ret[strlen($ret)-1])){
+                    $ret[strlen($ret)-1] = current($map);
+                    next($map);
+                    $ret .= next($map);
+                }
+                else{
+                    $ret .= current($map);
+                    $ret .= next($map);
+                }
             }
             else{
                 $ret .= str_repeat(current($map), $cociente);

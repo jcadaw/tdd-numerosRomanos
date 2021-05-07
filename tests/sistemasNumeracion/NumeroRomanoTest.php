@@ -50,6 +50,14 @@ class NumeroRomanoTest extends TestCase{
     }    
     
 
+    public function providerNumeros9(){
+        return [
+            '9 es IX' => [9, 'IX'],
+            '90 es XC' => [90, 'XC'],
+            '900 es CM' => [900, 'CM'],
+        ];
+    }       
+
     /**
      * @covers ::getRomanValue
      * @dataProvider providerSimbolosBase
@@ -96,5 +104,17 @@ class NumeroRomanoTest extends TestCase{
         $ret = $sut->getRomanValue();
 
         $this->assertSame($ret, $espero);
-    }       
+    }   
+    /**
+     * Con números nueve nos referimos a 9, 90, 900
+     * 
+     * @covers ::getRomanValue
+     * @dataProvider providerNumeros9
+     */
+    public function testDeberiaPasarNumeros9($num, $espero){
+        $sut = new NumeroRomano($num);
+        $ret = $sut->getRomanValue();
+
+        $this->assertSame($ret, $espero);
+    }          
 }
