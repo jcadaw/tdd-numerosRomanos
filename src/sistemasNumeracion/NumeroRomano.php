@@ -67,12 +67,12 @@ class NumeroRomano{
                 if (!empty($ret) && $this->isNumero5($ret[strlen($ret)-1])){
                     $ret[strlen($ret)-1] = current($map);
                     next($map);
-                    $ret .= next($map);
                 }
                 else{
+                    //tipo numero 4, 40, 400
                     $ret .= current($map);
-                    $ret .= next($map);
                 }
+                $ret .= next($map);
             }
             else{
                 $ret .= str_repeat(current($map), $cociente);
